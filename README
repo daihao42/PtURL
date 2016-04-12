@@ -1,0 +1,37 @@
+Windows安装：
+	pip install -r requirements.txt
+Windows编译：
+	python setup.py py2exe
+
+配置详解：
+	TEST_URL：用于测试的URL
+	THREAD_NUM：并发线程数
+	A_THREAD_LOOP：每个线程循环请求次数
+	CHECK_REP：用于读取的结果检查，非期望的结果值
+	LOOP_SLEEP：每次网页请求间隔时间
+	TIMEOUT：每次请求的timeout(超时)时间
+	OUTPUT_FILE：输出到文件，0表示直接打印到屏幕
+
+结果示例：
+	[T0] Sub Thread Begin
+	[T1] Sub Thread Begin
+	[T2] Sub Thread Begin
+	[T3] Sub Thread Begin
+	[T0 1] Get 79
+	[T7] Sub Thread Begin
+	[T1 1] Get 78
+	......
+	[T1495] Sub Thread End
+	[T1494] Sub Thread End
+	[T1497] Sub Thread End
+	[T1499] Sub Thread End
+	[T1498] Sub Thread End
+	main thread end
+	=====================================
+	URL:http://127.0.0.1:8080/T1/concurrency/run
+	任务数量:1500*2=3000
+	总耗时(秒):3.354192018508911
+	每次请求耗时(秒):0.001118064006169637
+	每秒承载请求数:894.4031777088404
+	错误数量:0
+	获取数目:79
